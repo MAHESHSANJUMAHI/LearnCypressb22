@@ -3,9 +3,9 @@ describe('Verify Login Functionality', () => {
 
     it('Verify login with Valid Credentials', () => {
 
-        cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+        cy.visit("/web/index.php/auth/login")
 
-        cy.get('//input[@name="username"]').type("Admin")
+        cy.get('input[name="username"]').type("Admin")
 
         cy.get('input[placeholder="Password"]').type("admin123")
 
@@ -18,7 +18,7 @@ describe('Verify Login Functionality', () => {
 
     it('Verify login with valid username and invalid password', () => {
 
-        cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+        cy.visit("/web/index.php/auth/login")
 
         cy.get('input[name="username"]').type("Admin")
 
@@ -31,7 +31,7 @@ describe('Verify Login Functionality', () => {
 
     it('Verify login with invalid username and valid password', () => {
 
-        cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+        cy.visit("/web/index.php/auth/login")
 
         cy.get('input[name="username"]').type("iugirhg")
 
@@ -45,7 +45,11 @@ describe('Verify Login Functionality', () => {
 
     it('Verify login with invalid username and invalid password', () => {
 
-        cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+        //cy.viewport(375,667)
+
+        cy.viewport("macbook-16")
+
+        cy.visit("/web/index.php/auth/login")
 
         cy.get("#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div:nth-child(2) > div > div:nth-child(2) > input").type("iugirhg")
 
