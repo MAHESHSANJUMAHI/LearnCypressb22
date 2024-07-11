@@ -1,3 +1,5 @@
+
+import data from "../fixtures/logindata.json"
 describe('Verify Login Functionality', () => {
 
 
@@ -5,9 +7,9 @@ describe('Verify Login Functionality', () => {
 
         cy.visit("/web/index.php/auth/login")
 
-        cy.get('input[name="username"]').type("Admin")
+        cy.get('input[name="username"]').type(data.username)
 
-        cy.get('input[placeholder="Password"]').type("admin123")
+        cy.get('input[placeholder="Password"]').type(data.password)
 
         cy.get('button[type="submit"]').click()
       
@@ -20,9 +22,9 @@ describe('Verify Login Functionality', () => {
 
         cy.visit("/web/index.php/auth/login")
 
-        cy.get('input[name="username"]').type("Admin")
+        cy.get('input[name="username"]').type(data.username)
 
-        cy.get('#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div:nth-child(3) > div > div:nth-child(2) > input').type("lgjoerjg")
+        cy.get('#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div:nth-child(3) > div > div:nth-child(2) > input').type(data.wrongpassword)
 
         cy.get("#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div.oxd-form-actions.orangehrm-login-action > button").click()
       
@@ -33,9 +35,9 @@ describe('Verify Login Functionality', () => {
 
         cy.visit("/web/index.php/auth/login")
 
-        cy.get('input[name="username"]').type("iugirhg")
+        cy.get('input[name="username"]').type(data.wronmgusername)
 
-        cy.get('#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div:nth-child(3) > div > div:nth-child(2) > input').type("admin123")
+        cy.get('#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div:nth-child(3) > div > div:nth-child(2) > input').type(data.password)
 
         cy.get("#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div.oxd-form-actions.orangehrm-login-action > button").click()
       
@@ -51,13 +53,20 @@ describe('Verify Login Functionality', () => {
 
         cy.visit("/web/index.php/auth/login")
 
-        cy.get("#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div:nth-child(2) > div > div:nth-child(2) > input").type("iugirhg")
+        cy.get("#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div:nth-child(2) > div > div:nth-child(2) > input").type(data.wronmgusername)
 
-        cy.get('#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div:nth-child(3) > div > div:nth-child(2) > input').type("jgtyitrh")
+        cy.get('#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div:nth-child(3) > div > div:nth-child(2) > input').type(data.wrongpassword)
 
         cy.get("#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div.oxd-form-actions.orangehrm-login-action > button").click()
       
         cy.contains('Invalid credentials').should("be.visible")
     })
 
+
+    it("without entering username and password", ()=>{
+        cy.visit("/web/index.php/auth/login")
+        cy.get('button[type="submit"]').click()
+        cy.contains('Invalid credentials').should("be.visible")
+
+    })
   })
