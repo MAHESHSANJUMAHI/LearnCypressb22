@@ -1,5 +1,5 @@
 
-import data from "../fixtures/logindata.json"
+import data from "../../fixtures/logindata.json"
 describe('Verify Login Functionality', () => {
 
 

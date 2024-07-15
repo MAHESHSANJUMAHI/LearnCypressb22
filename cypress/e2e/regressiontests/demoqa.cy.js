@@ -1,6 +1,6 @@
 
 
-import data from "../fixtures/demoqadata.json"
+import data from "../../fixtures/demoqadata.json"
 
 describe("Verify Demo QA ",()=>{
 

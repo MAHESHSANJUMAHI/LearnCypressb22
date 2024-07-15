@@ -10,12 +10,8 @@ module.exports = defineConfig({
     pageLoadTimeout: 120000,
     viewportWidth:1920,
     viewportHeight:1080,
-    watchForFileChanges:false,
-    screenshotsFolder: "cypress/raju",
-    videosFolder:"cypress/recordings",
-    retries: {"openMode": 3, runMode:2},
-    videoCompression: 51,
-        env:{
+    retries: {"openMode": 3},
+    env:{
       
        "username": "Mahesh",
        "password":"Raju"

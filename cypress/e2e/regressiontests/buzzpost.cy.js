@@ -1,19 +1,22 @@
-import logindata from "../fixtures/logindata.json"
-import buzzdata from "../fixtures/buzzdata.json"
+import data from "../../fixtures/logindata.json"
+import buzzdata from "../../fixtures/buzzdata.json"
 describe('Verify user can post some thing in the Buzz', () => {
 
 
     it('Text message post', () => {
     
         cy.visit("/web/index.php/auth/login")
-        cy.log("User launched application")
+
+        cy.log("User launched application" + data.username)
 
         //cy.wait(10000)
-        cy.get('input[name="username2"]').type(logindata.username)
+        cy.get('input[name="username"]').type(Cypress.env("username"))
 
-        cy.log("User typed username as "+ logindata.username)
+       // cy.wait(7000)
 
-        cy.get('input[placeholder="Password"]').type(logindata.password)
+        cy.log("User typed username as "+ Cypress.env("username"))
+
+        cy.get('input[placeholder="Password"]').type(Cypress.env("password"))
 
         cy.log("User typed password")
 
