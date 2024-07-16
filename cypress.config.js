@@ -13,7 +13,7 @@ module.exports = defineConfig({
     watchForFileChanges:false,
     screenshotsFolder: "cypress/raju",
     videosFolder:"cypress/recordings",
-    retries: {"openMode": 3, runMode:2},
+   // retries: {"openMode": 3, runMode:2},
     videoCompression: 51,
         env:{
       
