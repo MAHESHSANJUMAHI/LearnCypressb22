@@ -2,6 +2,7 @@ import data from "../../fixtures/logindata.json"
 import buzzdata from "../../fixtures/buzzdata.json"
 describe('Verify user can post some thing in the Buzz', () => {
 
+    const creds = ["Admin", "admin123"]
 
     it('Text message post', () => {
     
@@ -10,13 +11,13 @@ describe('Verify user can post some thing in the Buzz', () => {
         cy.log("User launched application" + data.username)
 
         //cy.wait(10000)
-        cy.get('input[name="username"]').type(Cypress.env("username"))
+        cy.get('input[name="username"]').type(creds[0])
 
        // cy.wait(7000)
 
         cy.log("User typed username as "+ Cypress.env("username"))
 
-        cy.get('input[placeholder="Password"]').type(Cypress.env("password"))
+        cy.get('input[placeholder="Password"]').type(creds[1])
 
         cy.log("User typed password")
 
