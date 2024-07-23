@@ -1,32 +1,62 @@
 import data from "../../fixtures/logindata.json"
 
 import jobtitledata from "../../fixtures/Admin/jobtitledata.json"
-describe('Verify Add Job title', () => {
+describe('Verify Add Job title', function () {
 
+    const menuitems ={
 
-    it('Verify adding job title with only mandotory fields', () => {
+        menu1 : "Admin",
+        menu2 : "PIM",
+        menu3: "Leave",
+        menu4: "Time",
+        menu5 : "Recruitment",
+        menu6: "My Info",
+        menu7 : "Performance",
+        menu8 : "Dashboard",
+        menu9: "Buzz",
+        menu10: "Claim",
+        menu11: "Maintenance",
+        menu12: "Directory"
+    }
+
+    const creds = {
+
+        username: "Admin",
+        password: "admin123"
+    }
+
+    it('Verify adding job title with only mandotory fields', function () {
 
         cy.visit("/web/index.php/auth/login")
 
-        cy.get('input[name="username"]').type(data.username)
+        cy.get('input[name="username"]').type(creds.username)
 
-        cy.get('input[placeholder="Password"]').type(data.password)
+        cy.get('input[placeholder="Password"]').type(creds['password'])
 
         cy.get('button[type="submit"]').click()
+
+        for (let item in menuitems){
+
+            cy.contains(menuitems[item]).should("be.visible")
+        }
       
-        cy.contains('Dashboard').should("be.visible")
         cy.contains('Admin').click()
         cy.contains('Job').click()
         cy.contains('Job Titles').click()
-        cy.get('button[class="oxd-button oxd-button--medium oxd-button--secondary"]').click()
-        let r = (Math.random() + 1).toString(36).substring(7);
-        cy.log(r)
-        cy.get('input[class="oxd-input oxd-input--active"]').last().type(jobtitledata.jobtitle+r)
-        cy.get("textarea[placeholder='Type description here']").type(jobtitledata.jobdescription)
-        cy.get("button[type='submit']").click()
-        cy.contains('Successfully Saved').should("be.visible")
       
+        createjobtitle(jobtitledata.jobtitle+r, jobtitledata.jobdescription )
     })
 
 
   })
+
+  function createjobtitle(value1, value2){
+
+    cy.get('button[class="oxd-button oxd-button--medium oxd-button--secondary"]').click()
+    let r = (Math.random() + 1).toString(36).substring(7);
+    cy.log(r)
+    cy.get('input[class="oxd-input oxd-input--active"]').last().type(value1)
+    cy.get("textarea[placeholder='Type description here']").type(value2)
+    cy.get("button[type='submit']").click()
+    cy.contains('Successfully Saved').should("be.visible")
+  }
