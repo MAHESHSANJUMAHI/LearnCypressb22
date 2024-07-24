@@ -58,3 +58,20 @@ for(let raju in menuitems){
 
     console.log("end loop")
 }
+
+
+let person={
+    firstname:"Sreelatha",
+    lastname: "Tharigonda",
+    age:50,
+    weight:60
+}
+//console.log("----------for/in   loop for objects---------------")
+for(let ele in person){
+console.log(ele)//prints only properties of person
+ console.log(person[ele])//prints only values of person
+console.log(ele)//not working printing 'undefined'
+
+//Objectname.propertyvalue
+// console.log("Property: "+ ele +", value: "+ person[ele])
+}
