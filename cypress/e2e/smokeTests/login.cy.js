@@ -1,6 +1,7 @@
 
 
 import data from "../../fixtures/logindata.json"
+import dasboard from "../../pages/dashboard.po"
 describe('Verify Login Functionality', () => {
 
     const ussername = "Admin"
@@ -22,13 +23,8 @@ describe('Verify Login Functionality', () => {
 
     it("Verify login with Valid Credentials", () => {
 
-        cy.get("input[name='username']").type(ussername)
-
-        cy.get('input[placeholder="Password"]').type(data.password)
-
-        cy.get('button[type="submit"]').click()
-      
-        cy.contains('Dashboard').should("be.visible")
+        dasboard.loginwithcreds(ussername, data.password)
+        cy.contains(dasboard.dashboardMenu()).should("be.visible")
 
         
     })
@@ -37,24 +33,14 @@ describe('Verify Login Functionality', () => {
 
         let invalidpassword = "ergnrek"
   
-        cy.get('input[name="username"]').type(data.username)
-
-        cy.get('#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div:nth-child(3) > div > div:nth-child(2) > input').type(invalidpassword)
-
-        cy.get("#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div.oxd-form-actions.orangehrm-login-action > button").click()
+       dasboard.loginwithcreds(ussername, invalidpassword)
       
-        cy.contains('Invalid credentials').should("be.visible")
+        cy.contains(dasboard.loginerrormessage).should("be.visible")
     })
 
     it.skip('Verify login with invalid username and valid password', () => {
 
-
-        cy.get('input[name="username"]').type(data.wronmgusername)
-
-        cy.get('#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div:nth-child(3) > div > div:nth-child(2) > input').type(data.password)
-
-        cy.get("#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div.oxd-form-actions.orangehrm-login-action > button").click()
-      
+         dasboard.loginwithcreds(data.wronmgusername, data.password)
         cy.contains('Invalid credentials').should("be.visible")
     })
  
@@ -65,21 +51,14 @@ describe('Verify Login Functionality', () => {
 
         cy.viewport("macbook-16")
 
-  
-
-        cy.get("#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div:nth-child(2) > div > div:nth-child(2) > input").type(data.wronmgusername)
-
-        cy.get('#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div:nth-child(3) > div > div:nth-child(2) > input').type("invalidpassword")
-
-        cy.get("#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div.oxd-form-actions.orangehrm-login-action > button").click()
-      
+        dasboard.loginwithcreds(data.wronmgusername, data.wrongpassword)
         cy.contains('Invalid credentials').should("be.visible")
     })
 
 
     it.skip("without entering username and password", ()=>{
       
-        cy.get('button[type="submit"]').click()
+        cy.get(dasboard.loginBtn()).click()
         cy.contains('Required').should("be.visible")
 
     })

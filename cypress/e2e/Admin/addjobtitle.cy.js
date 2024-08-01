@@ -1,4 +1,6 @@
 import data from "../../fixtures/logindata.json"
+import dasboard from "../../pages/dashboard.po"
+
 
 import jobtitledata from "../../fixtures/Admin/jobtitledata.json"
 describe('Verify Add Job title', function () {
@@ -29,11 +31,11 @@ describe('Verify Add Job title', function () {
 
         cy.visit("/web/index.php/auth/login")
 
-        cy.get('input[name="username"]').type(creds.username)
+        cy.get(dasboard.usernameInput()).type(creds.username)
 
-        cy.get('input[placeholder="Password"]').type(creds['password'])
+        cy.get(login.passwordInput()).type(creds['password'])
 
-        cy.get('button[type="submit"]').click()
+        cy.get(login.loginBtn()).click()
 
         for (let item in menuitems){
 
