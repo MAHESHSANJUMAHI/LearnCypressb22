@@ -31,11 +31,11 @@ describe('Verify Add Job title', function () {
 
         cy.visit("/web/index.php/auth/login")
 
-        cy.get(dasboard.usernameInput()).type(creds.username)
+        cy.xpath(dasboard.usernameInput()).type(creds.username)
 
-        cy.get(login.passwordInput()).type(creds['password'])
+        cy.xpath(dasboard.passwordInput()).type(creds['password'])
 
-        cy.get(login.loginBtn()).click()
+        cy.get(dasboard.loginBtn()).click()
 
         for (let item in menuitems){
 
@@ -45,6 +45,8 @@ describe('Verify Add Job title', function () {
         cy.contains('Admin').click()
         cy.contains('Job').click()
         cy.contains('Job Titles').click()
+        let r = (Math.random() + 1).toString(36).substring(7);
+        cy.log(r)
       
         createjobtitle(jobtitledata.jobtitle+r, jobtitledata.jobdescription )
     })
@@ -55,8 +57,6 @@ describe('Verify Add Job title', function () {
   function createjobtitle(value1, value2){
 
     cy.get('button[class="oxd-button oxd-button--medium oxd-button--secondary"]').click()
-    let r = (Math.random() + 1).toString(36).substring(7);
-    cy.log(r)
     cy.get('input[class="oxd-input oxd-input--active"]').last().type(value1)
     cy.get("textarea[placeholder='Type description here']").type(value2)
     cy.get("button[type='submit']").click()
