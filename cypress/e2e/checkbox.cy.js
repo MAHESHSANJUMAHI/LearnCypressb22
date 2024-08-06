@@ -1,5 +1,5 @@
-import data from "../../fixtures/logindata.json"
-import buzzdata from "../../fixtures/Buzz/buzzdata.json"
+import data from "../fixtures/logindata.json"
+import buzzdata from "../fixtures/Buzz/buzzdata.json"
 
 describe('Verify user can post some thing in the Buzz', () => {
 
@@ -26,17 +26,12 @@ describe('Verify user can post some thing in the Buzz', () => {
       
         cy.contains('Dashboard').should("be.visible")
 
-        cy.contains('Buzz').click()
+        cy.contains("PIM").click()
 
-        cy.contains('Buzz Newsfeed').should("be.visible")
+        cy.get('input[type="checkbox"]').check(["0","1","5"],{force:true})
 
-        cy.get(`textarea[placeholder="What's on your mind?"]`).type(buzzdata.post)
-
-        cy.get('button[type="submit"]').click()
-
-        cy.contains('Successfully Saved').should("be.visible")
-
+        
+       
     })
 
-
-  })
+})
