@@ -1,7 +1,5 @@
 describe('Automation - Working With Iframe', function () {
 
-
-
     it('Cypress Test Case - Understanding Iframe and how to work with Iframe', function () {
   
       cy.visit('https://jqueryui.com/checkboxradio/');
@@ -22,6 +20,10 @@ describe('Automation - Working With Iframe', function () {
            cy.wrap(radio1).click()
         })
 
+
+        cy.contains("Download").click()
+
+
        //cypress-iframe - plugin
 
     
@@ -30,3 +32,5 @@ describe('Automation - Working With Iframe', function () {
 
   })
   
+
+
