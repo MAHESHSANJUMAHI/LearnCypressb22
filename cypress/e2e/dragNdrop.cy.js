@@ -10,6 +10,7 @@ describe('Automation - Working With Drag and Drop', function () {
     });
 
 
+
     cy.visit('https://kitchen.applitools.com/ingredients/drag-and-drop');
 
     cy.wait(5000)
@@ -19,15 +20,15 @@ describe('Automation - Working With Drag and Drop', function () {
 
     // cy.get('.sourceitem').drag('.targetitem')
 
-//      cy.get('#menu-fried-chicken').drag('#plate-items');
+     // cy.get('#menu-fried-chicken').drag('#plate-items');
 
-   // cy.get('#menu-hamburger').drag('#plate-items');
+      // cy.get('#menu-hamburger').drag('#plate-items');
 
     //cy.get('#menu-ice-cream').drag('#plate-items')
 
     //Second Approach
 
-     const dataTransfer = new DataTransfer();
+    const dataTransfer = new DataTransfer();
 
     cy.get('#menu-fried-chicken').trigger('dragstart', {
 

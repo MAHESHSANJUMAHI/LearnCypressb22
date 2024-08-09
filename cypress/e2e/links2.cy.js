@@ -11,12 +11,11 @@ describe("suitename", () => {
 
         cy.origin('https://id.atlassian.com', () => {
 
-            cy.get('#username').type("rajutester2673@gmail.com")
+            cy.get('#username').type("Rajutester2673@gmail.com")
 
-            cy.get('#login-submit').click()
-        })
 
-        
+          })
+
 
     })
 })
