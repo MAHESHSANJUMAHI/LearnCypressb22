@@ -1,6 +1,6 @@
 
 
-import login from "../../../PageObjects/loginPage.po"
+import dasboard from "../pages/dashboard.po"
 
 //import data from "../fixtures/pim/addemployee.json"
 
@@ -14,17 +14,22 @@ describe('Verify Add employee functionality', function() {
    
     it('Verify add employee with Mandotory details', function() {
 
-        cy.log("Test execution started")
+      cy.log("Test execution started")
       cy.visit("/")
        
-       login.loginwithCreds('Admin', "admin123")
+       dasboard.loginwithcreds('Admin', "admin123")
 
         cy.url().should("eq", 'https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index')
         //or
 
         cy.url().should("include", "/web/index.php/dashboard/index")
 
-        cy.addemployee(this.data.firstname, this.data.lastname)
+        cy.contains("PIM").click()
+
+        cy.contains('Add Employee').click()
+
+        cy.get('input[name="firstName"]').type(this.data.firstname)
+        cy.get('input[name="lastName"]').type(this.data.lastname)
 
       })
 
