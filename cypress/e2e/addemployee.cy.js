@@ -1,12 +1,5 @@
-import login from "../../../PageObjects/loginPage.po"
-import dashboard from "../../../PageObjects/dashboardPage.po"
+import dasboard from "../pages/dashboard.po"
 
-import addemployeedata from "../../fixtures/ExceltoJson/addemploye.json"
-//import addemployee from "../PageObjects/addEmployeePage.po"
-
-//import addEmployeePage from "../PageObjects/addEmployeePage.po"
-
-//const addemployee = new addEmployeePage()
 describe("Verify Add employee functionality", () => {
 
     const menuitems = {
@@ -28,7 +21,7 @@ describe("Verify Add employee functionality", () => {
 
             cy.visit('/web/index.php/auth/login')
 
-            login.loginwithCreds(creds[0], creds[1])
+            dasboard.loginwithcreds(creds[0], creds[1])
 
             cy.url().should("eq", "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
 
@@ -39,8 +32,6 @@ describe("Verify Add employee functionality", () => {
             //cy.get('a[href="/web/index.php/pim/viewPimModule"]>span').click()
 
             // cy.contains(dashboard.pimMenu()).click()
-
-            // addemployee.addEmployee("Sridevi", "S")
 
             cy.addemployee(data.firstname, data.lastname)
 

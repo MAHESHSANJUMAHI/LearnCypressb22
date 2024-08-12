@@ -7,24 +7,7 @@ describe('Verify user can post some thing in the Buzz', () => {
 
     it('Text message post', () => {
     
-        cy.visit("/web/index.php/auth/login")
-
-        cy.log("User launched application" + data.username)
-
-        //cy.wait(10000)
-        cy.get('input[name="username"]').type(creds[0],{delay:0})
-
-       // cy.wait(7000)
-
-        cy.log("User typed username as "+ Cypress.env("username"))
-
-        cy.get('input[placeholder="Password"]').type(creds[1], {delay:0})
-
-        cy.log("User typed password")
-
-        cy.get('button[type="submit"]').click()
-      
-        cy.contains('Dashboard').should("be.visible")
+       cy.login("Admin", "admin123")
 
         cy.contains('Buzz').click()
 
@@ -34,7 +17,7 @@ describe('Verify user can post some thing in the Buzz', () => {
 
         cy.get('button[type="submit"]').click()
 
-        cy.contains('Successfully Saved').should("be.visible")
+        cy.contains('Successfully Saved').should("be.visible")    
 
     })
 

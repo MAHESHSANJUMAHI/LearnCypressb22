@@ -27,3 +27,53 @@
 require('@4tw/cypress-drag-drop')
 import 'cypress-file-upload';
 require('cypress-downloadfile/lib/downloadFileCommand')
+
+
+Cypress.Commands.add('addEmployee', (value1, value2) => {
+
+    cy.contains('PIM').click()
+
+    cy.contains('Add Employee').click()
+
+    cy.get('input[name="firstName"]').type(value1)
+
+    cy.get('input[name="lastName"]').type(value2)
+
+    cy.get('button[type="submit"]').click()
+
+    cy.contains('Successfully Saved').should("be.visible")
+
+})
+
+
+Cypress.Commands.add('login', (username, password) => {
+  cy.visit("/")
+  cy.get('input[name="username"]').type(username)
+  cy.get('input[name="password"]').type(password+"{enter}")
+  cy.contains("Dashboard").should('be.visible')
+
+})
+
+Cypress.Commands.add("CheckandClick", (element)=>{
+
+    cy.get('body').then(($body) => {
+        if ($body.find(element).length > 0) {
+      
+            cy.get('[data-jsl10n="wikivoyage.name"]').click()
+            cy.wait(3000)
+            cy.origin('https://www.wikivoyage.org', () => {
+                cy.title().should('eq', 'Wikivoyage')
+           })
+        
+        }
+        else {
+            cy.get('[data-jsl10n="wiktionary.name"]').click()
+            cy.wait(3000)
+            cy.origin('https://www.wiktionary.org', () => {
+                cy.title().should('eq', 'Wiktionary')
+           })
+            
+        }
+    })  
+
+})
