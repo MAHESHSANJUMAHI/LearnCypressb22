@@ -1,5 +1,6 @@
 const { defineConfig } = require("cypress");
 const {downloadFile} = require('cypress-downloadfile/lib/addPlugin')
+const { allureCypress } = require("allure-cypress/reporter");
 
 module.exports = defineConfig({
 
@@ -25,6 +26,9 @@ module.exports = defineConfig({
     },
     setupNodeEvents(on, config) {
       // implement node event listeners here
+      allureCypress(on, config);
+
+      return config;
       on('task', {downloadFile})
       require('cypress-mochawesome-reporter/plugin')(on);
     },

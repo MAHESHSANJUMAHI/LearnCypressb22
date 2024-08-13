@@ -1,7 +1,7 @@
 ///<reference types="cypress"/>
 
-import data from "../../fixtures/ExceltoJson/user_data.json"
-import login from "../../../PageObjects/loginPage.po"
+import data from "../fixtures/ExceltoJson/user_data.json"
+import dashboard from "../pages/dashboard.po"
 
 describe('Automation - Working With Data driven testing json', function () {
 
@@ -10,10 +10,10 @@ describe('Automation - Working With Data driven testing json', function () {
         
         it('Cypress Test Case - Understanding Data driven testing json', function () {
             cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login'); 
-            cy.xpath(login.usernameInput()).type(data.username);
-            cy.get(login.passwordInput()).type(data.password);
-            cy.get(login.loginBtn()).click();
-            cy.contains(login.loginErrorMessage).should("be.visible")
+            cy.xpath(dashboard.usernameInput()).type(data.username);
+            cy.xpath(dashboard.passwordInput()).type(data.password);
+            cy.get(dashboard.loginBtn()).click();
+            cy.contains(dashboard.loginerrormessage).should("be.visible")
 
           })
 

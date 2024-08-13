@@ -1,5 +1,7 @@
 import dasboard from "../pages/dashboard.po"
 
+import addemployeedata from "../fixtures/pim/addemp.json"
+
 describe("Verify Add employee functionality", () => {
 
     const menuitems = {
@@ -29,11 +31,9 @@ describe("Verify Add employee functionality", () => {
 
                 cy.contains(menuitems[i]).should("be.visible")
             }
-            //cy.get('a[href="/web/index.php/pim/viewPimModule"]>span').click()
 
-            // cy.contains(dashboard.pimMenu()).click()
 
-            cy.addemployee(data.firstname, data.lastname)
+            cy.addEmployee(data.firstname, data.lastname)
 
             //or
 
