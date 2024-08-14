@@ -7,7 +7,7 @@ import dasboard from "../pages/dashboard.po"
 describe('Verify Add employee functionality', function() {
 
     before(function () {
-        cy.fixture('pim/addemployee').then(function (data) {
+        cy.fixture().then(function (data) {
           this.data = data;
         })
       })
