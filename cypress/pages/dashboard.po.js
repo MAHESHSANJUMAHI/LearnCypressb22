@@ -6,6 +6,10 @@ class dashBoardPage extends loginPage{
 
         return "Dashboard"
     }
+    PIMMenu(){
+
+        return "PIM"
+    }
 }
 
 const dasboard = new dashBoardPage()

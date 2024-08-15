@@ -29,7 +29,7 @@ class loginPage {
 
    loginerrormessage = 'Invalid credentials'
 
-   loginwithcreds(username, password){
+   loginwithcreds(username, password ){
 
     cy.get(this.orageHRMLogo()).should("be.visible")
 

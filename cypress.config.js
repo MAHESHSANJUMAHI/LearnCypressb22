@@ -1,12 +1,14 @@
 const { defineConfig } = require("cypress");
 const {downloadFile} = require('cypress-downloadfile/lib/addPlugin')
-const { allureCypress } = require("allure-cypress/reporter");
+
 
 module.exports = defineConfig({
 
   projectId: "iiv5j4",
   reporter: 'cypress-mochawesome-reporter',
   e2e: {
+
+    specPattern:  "**/*.feature",
     video:true,
     baseUrl: "https://opensource-demo.orangehrmlive.com",
    //baseUrl:"https://reqres.in",
@@ -29,9 +31,9 @@ module.exports = defineConfig({
     },
     setupNodeEvents(on, config) {
       // implement node event listeners here
-      allureCypress(on, config);
 
-      return config;
+      return require('./cypress/plugins/index.js')(on, config)
+      
       on('task', {downloadFile})
       require('cypress-mochawesome-reporter/plugin')(on);
     },
