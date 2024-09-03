@@ -1,5 +1,7 @@
 const { defineConfig } = require("cypress");
 const {downloadFile} = require('cypress-downloadfile/lib/addPlugin')
+// const { addPlugin } = require('cypress-downloadfile/lib/addPlugin');
+// addPlugin(on, config);
 
 
 module.exports = defineConfig({
